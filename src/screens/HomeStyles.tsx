@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export const HomeStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  
   appContainer: {
     flex: 1,
     backgroundColor: '#333333',
@@ -8,7 +12,7 @@ export const HomeStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  
+
     logoContainer: {
       flexDirection:'column',
       borderColor: '#ffffff',

@@ -1,19 +1,38 @@
-import React from 'react';
-import { View, TextInput } from 'react-native';
+import React, {useState} from 'react';
+import { View, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 import { styles } from './batTextInputStyle';
 
 interface BatTextInputProps {
-  pass: string,
+  passSize?: number,
+  handlePassSize?: React.Dispatch<React.SetStateAction<number>>,
+  pass?: string,
 }
 
 export function BatTextInput(props: BatTextInputProps) {
-  return (
-        <TextInput
-          placeholder='PASSWORD'
+  const [passwordSize, setPasswordSize] = useState(14);
+
+  const handleChange = (value: string) => {
+    setPasswordSize(Number(value));
+    props.handlePassSize ? props.handlePassSize(Number(value)) : null
+  }
+  if (props.handlePassSize !== undefined) {
+    return (
+     
+          <TextInput
+          placeholder='14'
           style={styles.inputer}
-          multiline={true}
-          value={props.pass}
-         />
+          keyboardType="numeric"
+          onChangeText={(value) => handleChange(value)}
+          value={passwordSize.toString()}
+        />
+    )
+  }
+  return (
+      <TextInput
+        placeholder='PASSWORD'
+        style={styles.inputer}
+        value={props.pass}
+       />
   );
 }
